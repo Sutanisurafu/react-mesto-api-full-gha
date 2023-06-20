@@ -1,0 +1,12 @@
+.avatar-container__edit-btn {
+  padding: 0;
+  left: 45px;
+  top: 45px;
+  cursor: pointer;
+  width: 26px;
+  height: 26px;
+  background-image: url(../../../image/avatarEditBtn.svg);
+  background-color: transparent;
+  position: absolute;
+  border: none;
+}

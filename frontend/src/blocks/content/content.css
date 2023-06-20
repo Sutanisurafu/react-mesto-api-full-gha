@@ -1,0 +1,6 @@
+.content {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  max-width: 880px;
+}

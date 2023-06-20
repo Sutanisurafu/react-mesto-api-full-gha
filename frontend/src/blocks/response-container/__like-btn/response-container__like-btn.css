@@ -1,0 +1,17 @@
+.response-container__like-btn {
+  padding: 0;
+  cursor: pointer;
+  margin-right: 20px;
+  background-image: url(../../../image/like-button.svg);
+  background-repeat: no-repeat;
+  background-color: white;
+  align-self: center;
+  color: black;
+  width: 22px;
+  height: 20px;
+  border-style: none;
+}
+
+.response-container__like-btn:hover {
+  opacity: 0.5;
+}

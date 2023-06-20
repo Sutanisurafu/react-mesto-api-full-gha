@@ -1,0 +1,16 @@
+.avatar-container__image {
+  width: 120px;
+  height: 120px;
+  border-radius: 300px;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 650px) {
+  .avatar-container_image {
+    margin: 0;
+  }
+
+  .avatar-container__image:hover {
+    cursor: pointer;
+  }
+}

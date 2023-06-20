@@ -1,0 +1,9 @@
+.response-container {
+  display: flex;
+  flex-direction: column;
+  grid-column: 1;
+  justify-self: flex-end;
+  grid-row: 2;
+  align-items: center;
+  align-self: center;
+}
