@@ -4,6 +4,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 const NotFoundError = require('./errors/Not-found');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { signUpValidation, signInValidation } = require('./middlewares/validators');
 
 const { PORT = 3000 } = process.env;
@@ -18,10 +19,14 @@ app.use('*', cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use(requestLogger);
+
 app.use('/users', auth, userRouter);
 app.use('/cards', auth, cardRouter);
 app.post('/signin', signInValidation, login);
 app.post('/signup', signUpValidation, createUser);
+
+app.use(errorLogger);
 
 app.use('*', auth, (res, req, next) => {
   next(new NotFoundError('Запрашиваемая страница не существует'));
