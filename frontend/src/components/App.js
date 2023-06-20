@@ -191,9 +191,9 @@ function App() {
     authApi
       .login(loginData)
       .then(({ token }) => {
+        localStorage.setItem("jwt", token);
         setLoggedIn(true);
         setEmail(loginData.email);
-        localStorage.setItem("jwt", token);
       })
       .catch((err) => {
         console.log(err);
