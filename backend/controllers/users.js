@@ -109,7 +109,6 @@ module.exports.updateAvatar = (req, res, next) => {
 module.exports.getEnteredUserInfo = (req, res, next) => {
   User.findById(req.user._id)
     .orFail()
-    .then((user) => console.log(user))
     .then((user) => res.status(STATUS_CODES.OK).send(user))
     .catch((err) => next(new BadRequestError(err.message)));
 };
