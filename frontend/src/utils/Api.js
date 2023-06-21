@@ -16,7 +16,6 @@ class Api {
   }
 
   getUserInfo() {
-    console.log(localStorage)
     return this._request(`${this._url}/users/me`, {
       method: "GET",
       headers: this._headers,
