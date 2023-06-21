@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  BrowserRouter,
   Route,
   Routes,
   Navigate,
@@ -23,6 +22,7 @@ import InfoTooltip from "./InfoTooltip";
 import authApi from "../utils/AuthApi";
 
 function App() {
+
   const navigate = useNavigate();
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
     React.useState(false);
