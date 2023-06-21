@@ -45,17 +45,8 @@ function App() {
   const [isRegisterSucces, setIsRegisterSucces] = React.useState(false);
 
   React.useEffect(() => {
-    navigate("/");
-    loggedIn &&
-      Promise.all([api.getUserInfo(), api.getCards()])
-        .then(([userData, cardsData]) => {
-          setCurrentUser(userData);
-          setCards(cardsData);
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-  }, [loggedIn]);
+    tokenCheck();
+  }, []);
 
   const tokenCheck = () => {
     const jwt = localStorage.getItem("jwt");
@@ -80,8 +71,18 @@ function App() {
   };
 
   React.useEffect(() => {
-    tokenCheck();
-  }, []);
+    loggedIn &&
+      Promise.all([api.getUserInfo(), api.getCards()])
+        .then(([userData, cardsData]) => {
+          setCurrentUser(userData);
+          setCards(cardsData);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+  }, [loggedIn]);
+
+
 
   const handleUpdateUser = (userDat) => {
     setIsLoading(true);
