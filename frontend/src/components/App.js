@@ -67,7 +67,6 @@ function App() {
           if (res) {
             setEmail(res.email);
             setLoggedIn(true);
-            
           }
         })
         .catch((err) => console.log(err))
@@ -192,8 +191,8 @@ function App() {
       .login(loginData)
       .then(({ token }) => {
         localStorage.setItem("jwt", token);
-        setLoggedIn(true);
         setEmail(loginData.email);
+        setLoggedIn(true);
       })
       .catch((err) => {
         console.log(err);

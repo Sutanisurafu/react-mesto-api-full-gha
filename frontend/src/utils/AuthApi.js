@@ -39,13 +39,13 @@ class AuthApi {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
       },
     });
   }
 }
 
-const authApi = new AuthApi("http://localhost:3000");
+const authApi = new AuthApi("http://158.160.49.95:3000");
 
 export default authApi;
 
