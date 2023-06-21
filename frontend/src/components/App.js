@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  BrowserRouter,
   Route,
   Routes,
   Navigate,
@@ -22,7 +23,6 @@ import InfoTooltip from "./InfoTooltip";
 import authApi from "../utils/AuthApi";
 
 function App() {
-
   const navigate = useNavigate();
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
     React.useState(false);
@@ -45,8 +45,17 @@ function App() {
   const [isRegisterSucces, setIsRegisterSucces] = React.useState(false);
 
   React.useEffect(() => {
-    tokenCheck();
-  }, []);
+    loggedIn &&
+      Promise.all([api.getUserInfo(), api.getCards()])
+        .then(([userData, cardsData]) => {
+          setCurrentUser(userData);
+          setCards(cardsData);
+          navigate("/");
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+  }, [loggedIn]);
 
   const tokenCheck = () => {
     const jwt = localStorage.getItem("jwt");
@@ -58,7 +67,7 @@ function App() {
           setIsDataLoading(false);
           if (res) {
             setEmail(res.email);
-            setLoggedIn(true);
+            setLoggedIn(true)
           }
         })
         .catch((err) => console.log(err))
@@ -71,18 +80,8 @@ function App() {
   };
 
   React.useEffect(() => {
-    loggedIn &&
-      Promise.all([api.getUserInfo(), api.getCards()])
-        .then(([userData, cardsData]) => {
-          setCurrentUser(userData);
-          setCards(cardsData);
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-  }, [loggedIn]);
-
-
+    tokenCheck();
+  }, []);
 
   const handleUpdateUser = (userDat) => {
     setIsLoading(true);
@@ -193,8 +192,9 @@ function App() {
       .login(loginData)
       .then(({ token }) => {
         localStorage.setItem("jwt", token);
+        tokenCheck();
         setEmail(loginData.email);
-        setLoggedIn(true);
+        window.location.reload()
       })
       .catch((err) => {
         console.log(err);

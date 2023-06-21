@@ -16,6 +16,7 @@ class Api {
   }
 
   getUserInfo() {
+    console.log(localStorage)
     return this._request(`${this._url}/users/me`, {
       method: "GET",
       headers: this._headers,
@@ -25,7 +26,10 @@ class Api {
   getCards() {
     return this._request(`${this._url}/cards`, {
       method: "GET",
-      headers: this._headers,
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+      },
     });
   }
 
@@ -85,6 +89,8 @@ class Api {
       headers: this._headers,
     });
   }
+
+
 }
 
 const api = new Api({
