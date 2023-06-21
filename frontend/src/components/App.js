@@ -45,12 +45,12 @@ function App() {
   const [isRegisterSucces, setIsRegisterSucces] = React.useState(false);
 
   React.useEffect(() => {
+    navigate("/");
     loggedIn &&
       Promise.all([api.getUserInfo(), api.getCards()])
         .then(([userData, cardsData]) => {
           setCurrentUser(userData);
           setCards(cardsData);
-          navigate("/");
         })
         .catch((err) => {
           console.error(err);
