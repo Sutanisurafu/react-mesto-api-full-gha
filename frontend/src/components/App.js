@@ -50,6 +50,7 @@ function App() {
         .then(([userData, cardsData]) => {
           setCurrentUser(userData);
           setCards(cardsData);
+          navigate("/");
         })
         .catch((err) => {
           console.error(err);
