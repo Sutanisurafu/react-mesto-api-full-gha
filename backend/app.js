@@ -16,7 +16,16 @@ const { createUser, login } = require('./controllers/users');
 const userRouter = require('./routes/users');
 const cardRouter = require('./routes/cards');
 
-app.use(cors());
+const config = {
+  origin: [
+    'http://halfgram-mesto.nomoreparties.sbs',
+    'http://localhost:3000',
+    'http://localhost:3000/',
+    'http://localhost:3000/signup',
+  ],
+};
+
+app.use(cors(config));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
