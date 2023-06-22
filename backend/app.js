@@ -16,9 +16,7 @@ const { createUser, login } = require('./controllers/users');
 const userRouter = require('./routes/users');
 const cardRouter = require('./routes/cards');
 
-app.use('*', cors(), auth, (res, req, next) => {
-  next(new NotFoundError('Запрашиваемая страница не существует'));
-});
+app.use('*', cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -31,7 +29,9 @@ app.post('/signup', signUpValidation, createUser);
 
 app.use(errorLogger);
 
-
+app.use('*', auth, (res, req, next) => {
+  next(new NotFoundError('Запрашиваемая страница не существует'));
+});
 
 mongoose
   .connect('mongodb://0.0.0.0:27017/mestodb', {
