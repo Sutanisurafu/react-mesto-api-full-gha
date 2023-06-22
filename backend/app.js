@@ -17,15 +17,7 @@ const userRouter = require('./routes/users');
 const cardRouter = require('./routes/cards');
 
 const options = {
-  origin: [
-    'http://halfgram-mesto.nomoreparties.sbs:3000',
-    'http://halfgram-mesto.nomoreparties.sbs:3001',
-    'http://localhost:3000',
-    'http://localhost:3001',
-    'http://158.160.49.95:3000',
-    'http://158.160.49.95:3001',
-    'http://10.128.0.33:3000',
-  ],
+  origin: 'http://localhost:3000',
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   allowedHeaders: ['Content-Type', 'origin', 'Authorization'],
 };
