@@ -29,7 +29,7 @@ const options = {
   allowedHeaders: ['Content-Type', 'origin', 'Authorization'],
 };
 
-app.use(cors(options));
+app.use('*', cors(options));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
