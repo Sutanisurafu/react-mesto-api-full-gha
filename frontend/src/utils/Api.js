@@ -93,7 +93,7 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: "api.halfgram.nomoreparties.sbs",
+  baseUrl: "http://api.halfgram.nomoreparties.sbs",
 //  baseUrl: "http://localhost:3001",
   headers: {
     "Content-Type": "application/json",
