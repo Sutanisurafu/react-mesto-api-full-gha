@@ -181,7 +181,7 @@ function App() {
       .catch((err) => {
         setIsRegisterSucces(false);
         setisInfoToolTipOpen(true);
-        setTimeout(closeInfoToolTip, 3000);
+        setTimeout(closeInfoToolTip, 2500);
         console.log(err);
       });
   };
