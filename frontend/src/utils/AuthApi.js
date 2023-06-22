@@ -45,6 +45,7 @@ class AuthApi {
   }
 }
 
-const authApi = new AuthApi("http://158.160.49.95:3001");
+// const authApi = new AuthApi("http://158.160.49.95:3001");
+const authApi = new AuthApi("http://localhost:3001");
 export default authApi;
 
