@@ -7,6 +7,6 @@
 
 ## Ссылки на проект
 
-IP-адрес 158.160.49.95
-Frontend http://halfgram-mesto.nomoreparties.sbs/
-Backend http://api.halfgram.nomoreparties.sbs
+#IP 158.160.49.95
+#Frontend http://halfgram-mesto.nomoreparties.sbs/
+#Backend http://api.halfgram.nomoreparties.sbs
