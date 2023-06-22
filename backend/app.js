@@ -19,7 +19,8 @@ const cardRouter = require('./routes/cards');
 app.use(cors({
   origin: ['http://halfgram-mesto.nomoreparties.sbs:3000',
     'http://localhost:3000',
-    'http://localhost:3001'],
+    'http://localhost:3001',
+    'http://158.160.49.95:3000'],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
 }));
 app.use(express.json());
