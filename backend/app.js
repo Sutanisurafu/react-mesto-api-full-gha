@@ -8,7 +8,7 @@ const NotFoundError = require('./errors/Not-found');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { signUpValidation, signInValidation } = require('./middlewares/validators');
 
-const { PORT = 3001 } = process.env;
+const { PORT = 3000 } = process.env;
 
 const app = express();
 const auth = require('./middlewares/auth');
@@ -61,5 +61,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => {
-  console.log('Server is running on 3001 PORT');
+  console.log('Server is running on 3000 PORT');
 });
