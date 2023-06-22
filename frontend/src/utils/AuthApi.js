@@ -46,6 +46,5 @@ class AuthApi {
 }
 
 const authApi = new AuthApi("http://158.160.49.95:3000");
-
 export default authApi;
 

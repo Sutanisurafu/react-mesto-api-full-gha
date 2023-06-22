@@ -18,8 +18,9 @@ module.exports.login = (req, res, next) => {
 
   return User.findUserByCredentials(email, password)
     .then((user) => {
+      const { JWT_SECRET_KEY = 'random-secret-phrase' } = process.env;
       res.send({
-        token: jwt.sign({ _id: user._id }, 'super-strong-secret', { expiresIn: '7d' }),
+        token: jwt.sign({ _id: user._id }, JWT_SECRET_KEY, { expiresIn: '7d' }),
       });
     })
     .catch((err) => next(new UnauthorizedError(err.message)));
