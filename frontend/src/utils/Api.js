@@ -93,8 +93,8 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: "http://api.halfgram.nomoreparties.sbs",
-//  baseUrl: "http://localhost:3001",
+  // baseUrl: "http://api.halfgram.nomoreparties.sbs",
+ baseUrl: "http://localhost:3000",
   headers: {
     "Content-Type": "application/json",
     'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
