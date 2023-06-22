@@ -19,6 +19,7 @@ const cardRouter = require('./routes/cards');
 const options = {
   origin: [
     'http://halfgram-mesto.nomoreparties.sbs:3000',
+    'http://halfgram-mesto.nomoreparties.sbs:3001',
     'http://localhost:3000',
     'http://localhost:3001',
     'http://158.160.49.95:3000',
