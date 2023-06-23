@@ -21,7 +21,7 @@ exports.signInValidation = celebrate({
 
 exports.userIdValidate = celebrate({
   params: Joi.object().keys({
-    userId: Joi.string().hex().length(24),
+    userId: Joi.string().required().hex().length(24),
   }),
 });
 
@@ -47,6 +47,6 @@ exports.cardValidate = celebrate({
 
 exports.cardIdValidate = celebrate({
   params: Joi.object().keys({
-    cardId: Joi.string().hex().length(24),
+    cardId: Joi.string().required().hex().length(24),
   }),
 });

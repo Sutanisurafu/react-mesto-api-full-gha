@@ -4,7 +4,6 @@ const User = require('../models/user');
 const { STATUS_CODES } = require('../constants/errors');
 const NotFoundError = require('../errors/Not-found');
 const BadRequestError = require('../errors/Bad-request');
-const UnauthorizedError = require('../errors/Unauthorized');
 const ConflictError = require('../errors/Conflict-request');
 
 module.exports.getUsers = (req, res, next) => {
@@ -23,7 +22,7 @@ module.exports.login = (req, res, next) => {
         token: jwt.sign({ _id: user._id }, JWT_SECRET_KEY, { expiresIn: '7d' }),
       });
     })
-    .catch((err) => next(new UnauthorizedError(err.message)));
+    .catch((err) => next(err));
 };
 
 module.exports.createUser = (req, res, next) => {
@@ -65,9 +64,9 @@ module.exports.getUserById = (req, res, next) => {
       } return next(new NotFoundError('Запрашиваемый пользователь не найден'));
     })
     .catch((err) => {
-      if (err.name !== 'CastError') {
-        next(err);
-      } return next(new BadRequestError('Некорректный id пользователя'));
+      if (err.name === 'CastError') {
+        return next(new BadRequestError('Некорректный id пользователя'));
+      } return next(err);
     });
 };
 
@@ -83,9 +82,9 @@ module.exports.updateUser = (req, res, next) => {
   )
     .then((user) => res.send(user))
     .catch((err) => {
-      if (err.name !== 'ValidationError') {
-        next(err);
-      } return next(new BadRequestError('Некорректные данные'));
+      if (err.name === 'ValidationError') {
+        return next(new BadRequestError('Некорректные данные'));
+      } return next(err);
     });
 };
 
@@ -101,9 +100,9 @@ module.exports.updateAvatar = (req, res, next) => {
   )
     .then((user) => res.send(user))
     .catch((err) => {
-      if (err.name !== 'ValidationError') {
-        next(err);
-      } return next(new BadRequestError('Некорректные данные'));
+      if (err.name === 'ValidationError') {
+        return next(new BadRequestError('Некорректные данные'));
+      } return next(err);
     });
 };
 
@@ -111,5 +110,9 @@ module.exports.getEnteredUserInfo = (req, res, next) => {
   User.findById(req.user._id)
     .orFail()
     .then((user) => res.status(STATUS_CODES.OK).send(user))
-    .catch((err) => next(new BadRequestError(err.message)));
+    .catch((err) => {
+      if (err.name === 'CastError') {
+        return next(new BadRequestError('Некорректные данные'));
+      } return next(err);
+    });
 };
