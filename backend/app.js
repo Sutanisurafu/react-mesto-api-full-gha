@@ -4,7 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
-const NotFoundError = require('./errors/Not-found');
+const router = require('./routes/Index');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { signUpValidation, signInValidation } = require('./middlewares/validators');
 
@@ -28,14 +28,7 @@ app.get('/crash-test', () => {
   }, 0);
 });
 
-app.use('/users', auth, userRouter);
-app.use('/cards', auth, cardRouter);
-app.post('/signin', signInValidation, login);
-app.post('/signup', signUpValidation, createUser);
-
-app.use('*', auth, (res, req, next) => {
-  next(new NotFoundError('Запрашиваемая страница не существует'));
-});
+app.use(router);
 
 app.use(errorLogger);
 

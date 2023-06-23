@@ -70,6 +70,17 @@ module.exports.getUserById = (req, res, next) => {
     });
 };
 
+module.exports.getEnteredUserInfo = (req, res, next) => {
+  User.findById(req.user._id)
+    .orFail()
+    .then((user) => res.status(STATUS_CODES.OK).send(user))
+    .catch((err) => {
+      if (err.name === 'CastError') {
+        return next(new BadRequestError('Некорректные данные'));
+      } return next(err);
+    });
+};
+
 module.exports.updateUser = (req, res, next) => {
   const { name, about } = req.body;
   User.findByIdAndUpdate(
@@ -101,17 +112,6 @@ module.exports.updateAvatar = (req, res, next) => {
     .then((user) => res.send(user))
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        return next(new BadRequestError('Некорректные данные'));
-      } return next(err);
-    });
-};
-
-module.exports.getEnteredUserInfo = (req, res, next) => {
-  User.findById(req.user._id)
-    .orFail()
-    .then((user) => res.status(STATUS_CODES.OK).send(user))
-    .catch((err) => {
-      if (err.name === 'CastError') {
         return next(new BadRequestError('Некорректные данные'));
       } return next(err);
     });
