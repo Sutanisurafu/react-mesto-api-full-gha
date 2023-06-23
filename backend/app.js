@@ -6,15 +6,10 @@ const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 const router = require('./routes/Index');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const { signUpValidation, signInValidation } = require('./middlewares/validators');
 
 const { PORT = 3000 } = process.env;
 
 const app = express();
-const auth = require('./middlewares/auth');
-const { createUser, login } = require('./controllers/users');
-const userRouter = require('./routes/users');
-const cardRouter = require('./routes/cards');
 
 app.use(cors());
 app.use(express.json());
